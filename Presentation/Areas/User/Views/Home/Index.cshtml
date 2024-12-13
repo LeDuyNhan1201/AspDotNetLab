@@ -1,0 +1,17 @@
+﻿@using System.Globalization
+@model dynamic
+<h1>@ViewData["Message"]</h1>
+
+<form asp-area="User" asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+    @Html.AntiForgeryToken()  <!-- Add Anti-Forgery Token -->
+    <button type="submit" class="btn btn-danger">Logout</button>
+</form>
+
+<!-- Language Switcher -->
+<form id="languageForm" method="get" asp-area="User" asp-controller="Home" asp-action="ChangeLanguage">
+    <select name="lang" onchange="this.form.submit()">
+        <option value="en-US" @(CultureInfo.CurrentCulture.Name == "en-US" ? "selected" : "")>English</option>
+        <option value="vi-VN" @(CultureInfo.CurrentCulture.Name == "vi-VN" ? "selected" : "")>Vietnamese</option>
+    </select>
+</form>
+

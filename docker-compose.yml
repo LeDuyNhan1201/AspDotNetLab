@@ -1,0 +1,43 @@
+﻿version: '3.9'
+
+services:
+  dot-net-lab-pgadmin:
+    image: dpage/pgadmin4:snapshot
+    container_name: dot-net-lab-pgadmin
+    depends_on:
+      [ dot-net-lab-postgres ]
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dev@admin.com
+      PGADMIN_DEFAULT_PASSWORD: dev123
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - dot-net-lab-pgadmin-data:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - dot-net-lab-network
+    restart: unless-stopped
+
+  dot-net-lab-postgres:
+    image: postgres:12.20-bullseye
+    container_name: dot-net-lab-postgres
+    environment:
+      POSTGRES_USER: devUser
+      POSTGRES_PASSWORD: dev123
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    volumes:
+      - dot-net-lab-postgres-data:/var/lib/postgresql/data
+      - ./Docker/postgres/postgres-init-db:/docker-entrypoint-initdb.d:ro
+    networks:
+      - dot-net-lab-network
+    restart: unless-stopped
+
+networks:
+  dot-net-lab-network:
+    driver: bridge
+
+volumes:
+  dot-net-lab-pgadmin-data:
+  dot-net-lab-postgres-data:

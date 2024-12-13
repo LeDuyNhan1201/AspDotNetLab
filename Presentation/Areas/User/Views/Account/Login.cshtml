@@ -1,0 +1,36 @@
+﻿@model dynamic
+
+<h2>Login</h2>
+
+<form asp-area="User" asp-controller="Account" asp-action="Login" method="post">
+    <!-- Hiển thị lỗi chung nếu có -->
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div style="color: red;">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    }
+
+    <div>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" value="@Model?.username" required />
+        @if (ViewData.ModelState["username"]?.Errors.Count > 0)
+        {
+            <span style="color: red;">@ViewData.ModelState["username"]?.Errors[0]?.ErrorMessage</span>
+        }
+    </div>
+
+    <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+        @if (ViewData.ModelState["password"]?.Errors.Count > 0)
+        {
+            <span style="color: red;">@ViewData.ModelState["password"]?.Errors[0]?.ErrorMessage</span>
+        }
+    </div>
+
+    <button type="submit">Login</button>
+</form>
