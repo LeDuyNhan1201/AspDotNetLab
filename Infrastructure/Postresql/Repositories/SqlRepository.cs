@@ -1,4 +1,5 @@
-﻿using Domain.IRepositories;
+﻿using Domain.Entities;
+using Domain.IRepositories;
 using Domain.Specification;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,46 +10,46 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Postresql.Repositories
 {
-    public class SqlRepository<TEntity, TId>(DbContext context) : ISqlRepository<TEntity, TId> where TEntity : class
+    public class SqlRepository<TEntity, TId>(DbContext context) : ISqlRepository<TEntity, TId> where TEntity : AbstractEntity<TId>
     {
 
         protected readonly DbSet<TEntity> DbSet = context.Set<TEntity>();
 
-        public async Task<List<TEntity>> GetAllAsync() => await DbSet.ToListAsync();
+        public async Task<ICollection<TEntity>> GetAllAsync() => await DbSet.ToListAsync();
 
-        public async Task<TEntity> GetByIdAsync(TId id) => await DbSet.FindAsync(id);
+        public async Task<TEntity> GetByIdAsync(TId id) => await DbSet.Where(e => e.Id.Equals(id)).FirstOrDefaultAsync();
+
+        public async Task CommitChangesAsync() => await context.SaveChangesAsync();
 
         public virtual async Task CreateAsync(IEnumerable<TEntity> items)
         {
             ArgumentNullException.ThrowIfNull(items);
             await DbSet.AddRangeAsync(items);
-            await context.SaveChangesAsync();
         }
 
         public async Task<TEntity> CreateAsync(TEntity item)
         {
             ArgumentNullException.ThrowIfNull(item);
             await DbSet.AddAsync(item);
-            await context.SaveChangesAsync();
             return item;
         }
 
-        public async Task UpdateAsync(TEntity item)
+        public TEntity UpdateAsync(TEntity item)
         {
             ArgumentNullException.ThrowIfNull(item);
             DbSet.Attach(item);
             context.Entry(item).State = EntityState.Modified;
-            await context.SaveChangesAsync();
+            return item;
         }
 
-        public async Task DeleteAsync(TId id)
+        public async Task<TEntity> DeleteAsync(TId id)
         {
             var entity = await GetByIdAsync(id) ?? throw new KeyNotFoundException($"Entity with id {id} not found.");
             DbSet.Remove(entity);
-            await context.SaveChangesAsync();
+            return entity;
         }
 
-        public async Task<List<TEntity>> FindAsync(Func<TEntity, bool> predicate)
+        public async Task<ICollection<TEntity>> FindAsync(Func<TEntity, bool> predicate)
         {
             ArgumentNullException.ThrowIfNull(predicate);
             return await Task.FromResult(DbSet.AsEnumerable().Where(predicate).ToList());

@@ -1,32 +1,35 @@
-﻿using Domain.Specification;
+﻿using Domain.Entities;
+using Domain.Specification;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Domain.IRepositories
 {
-    public interface ISqlRepository<TEntity, TId> where TEntity : class
+    public interface ISqlRepository<TEntity, TId> where TEntity : AbstractEntity<TId>
     {
 
-        Task<List<TEntity>> GetAllAsync();
+        public Task<ICollection<TEntity>> GetAllAsync();
 
-        Task<TEntity> GetByIdAsync(TId id);
+        public Task<TEntity> GetByIdAsync(TId id);
 
-        Task CreateAsync(IEnumerable<TEntity> items);
+        public Task CommitChangesAsync();
 
-        Task<TEntity> CreateAsync(TEntity item);
+        public Task CreateAsync(IEnumerable<TEntity> items);
 
-        Task UpdateAsync(TEntity item);
+        public Task<TEntity> CreateAsync(TEntity item);
 
-        Task DeleteAsync(TId id);
+        public TEntity UpdateAsync(TEntity item);
 
-        Task<List<TEntity>> FindAsync(Func<TEntity, bool> predicate);
+        public Task<TEntity> DeleteAsync(TId id);
 
-        Task<bool> ExistsAsync(TId id);
+        public Task<ICollection<TEntity>> FindAsync(Func<TEntity, bool> predicate);
 
-        Task<int> CountAsync();
+        public Task<bool> ExistsAsync(TId id);
 
-        Task<PagedResult<TEntity>> GetPagedAsync(SqlSpecification<TEntity> spec);
+        public Task<int> CountAsync();
+
+        public Task<PagedResult<TEntity>> GetPagedAsync(SqlSpecification<TEntity> spec);
 
     }
 

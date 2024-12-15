@@ -6,11 +6,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Domain.Entities
 {
     [Table("catalogues")]
-    public class Catalogue
+    public class Catalogue : AbstractEntity<Guid>
     {
 
-        [Column("catalogue_id")]
-        public Guid CatalogueId { get; set; } = Guid.NewGuid();
+        public Catalogue() => Id = Guid.NewGuid();
 
         [Column("name")]
         [MaxLength(100)]

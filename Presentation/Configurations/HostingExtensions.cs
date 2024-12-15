@@ -1,12 +1,18 @@
-﻿using Infrastructure.Postresql.Data;
+﻿using Application;
+using Infrastructure.Postresql.Data;
 using Infrastructure.Postresql.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Localization;
 using Presentation.Configurations.Cookie;
 using Presentation.Configurations.Localization;
 using Presentation.Configurations.Serilog;
+using Presentation.Configurations.ValidationHandler;
+using Presentation.Configurations.Web;
+using Presentation.Mappers;
+using Presentation.Swagger;
 using Serilog;
 using System;
 
@@ -25,6 +31,8 @@ internal static class HostingExtensions
 
         builder.Services.AddRepositories();
 
+        builder.Services.AddMappers();
+
         //builder.Services.AddServices();
 
         builder.Services.AddLocalization(builder.Configuration);
@@ -35,22 +43,19 @@ internal static class HostingExtensions
 
         builder.Services.AddEndpointsApiExplorer();
 
-        //builder.Services.AddSwaggerPreConfigured(options =>
-        //{
-        //    builder.Configuration.GetSection("Swagger").Bind(options);
-        //});
+        builder.Services.AddSwaggerPreConfigured(options =>
+        {
+            builder.Configuration.GetSection("Swagger").Bind(options);
+        });
 
         var serviceProvider = builder.Services.BuildServiceProvider();
-        //var localizer = serviceProvider.GetRequiredService<IStringLocalizer<SharedResource>>();
-        //var notificationLocalizer = serviceProvider.GetRequiredService<IStringLocalizer<NotificationSharedResource>>();
+        var localizer = serviceProvider.GetRequiredService<IStringLocalizer<SharedResource>>();
 
         builder.Services.AddCookieAuthenticaton();
 
-        //builder.Services.AddGlobalExceptionHandler();
+        builder.Services.AddGlobalExceptionHandler();
 
-        //builder.Services.AddTransient<HttpNotificationExceptionHandler>();
-
-        //builder.Services.AddValidationHanlder(builder.Configuration, notificationLocalizer);
+        builder.Services.AddValidationHanlder(builder.Configuration, localizer);
 
         builder.AddCommonSerilog();
 
@@ -67,11 +72,9 @@ internal static class HostingExtensions
 
         app.UseLocalization();
 
-        //app.UseGlobalExceptionHandler();
+        app.UseGlobalExceptionHandler();
 
-        //app.UseMiddleware<HttpNotificationExceptionHandler>();
-
-        //app.UseSwaggerPreConfigured();
+        app.UseSwaggerPreConfigured();
 
         app.UsePathBase(configuration["Server:BasePath"]);
 

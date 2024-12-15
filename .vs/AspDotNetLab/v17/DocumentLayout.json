@@ -1,7 +1,40 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{45627C51-33BE-4022-8B3B-0B93D44F46C6}|Application\\Application.csproj|c:\\users\\asus\\source\\repos\\aspdotnetlab\\application\\application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{45627C51-33BE-4022-8B3B-0B93D44F46C6}|Application\\Application.csproj|solutionrelative:application\\application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BCD6629-2E6D-44D7-994E-DC537B4BB9EB}|Domain\\Domain.csproj|c:\\users\\asus\\source\\repos\\aspdotnetlab\\domain\\domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{5BCD6629-2E6D-44D7-994E-DC537B4BB9EB}|Domain\\Domain.csproj|solutionrelative:domain\\domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F3293AF-D958-4F24-89EA-9478AA17C27D}|Infrastructure\\Infrastructure.csproj|c:\\users\\asus\\source\\repos\\aspdotnetlab\\infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3F3293AF-D958-4F24-89EA-9478AA17C27D}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19C729ED-D538-4251-B900-062B104EE3A3}|Presentation\\Presentation.csproj|c:\\users\\asus\\source\\repos\\aspdotnetlab\\presentation\\presentation.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{19C729ED-D538-4251-B900-062B104EE3A3}|Presentation\\Presentation.csproj|solutionrelative:presentation\\presentation.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F3293AF-D958-4F24-89EA-9478AA17C27D}|Infrastructure\\Infrastructure.csproj|c:\\users\\asus\\source\\repos\\aspdotnetlab\\infrastructure\\postresql\\data\\postresqldbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F3293AF-D958-4F24-89EA-9478AA17C27D}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\postresql\\data\\postresqldbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BCD6629-2E6D-44D7-994E-DC537B4BB9EB}|Domain\\Domain.csproj|c:\\users\\asus\\source\\repos\\aspdotnetlab\\domain\\entities\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5BCD6629-2E6D-44D7-994E-DC537B4BB9EB}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BCD6629-2E6D-44D7-994E-DC537B4BB9EB}|Domain\\Domain.csproj|c:\\users\\asus\\source\\repos\\aspdotnetlab\\domain\\entities\\bookcatalogue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5BCD6629-2E6D-44D7-994E-DC537B4BB9EB}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\bookcatalogue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BCD6629-2E6D-44D7-994E-DC537B4BB9EB}|Domain\\Domain.csproj|c:\\users\\asus\\source\\repos\\aspdotnetlab\\domain\\entities\\catalogue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5BCD6629-2E6D-44D7-994E-DC537B4BB9EB}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\catalogue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 120,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +51,110 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Domain",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Domain\\Domain.csproj",
+              "RelativeDocumentMoniker": "Domain\\Domain.csproj",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Domain\\Domain.csproj",
+              "RelativeToolTip": "Domain\\Domain.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-12-15T02:10:33.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Infrastructure",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Infrastructure\\Infrastructure.csproj",
+              "RelativeDocumentMoniker": "Infrastructure\\Infrastructure.csproj",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Infrastructure\\Infrastructure.csproj",
+              "RelativeToolTip": "Infrastructure\\Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-12-15T02:10:28.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Presentation",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Presentation\\Presentation.csproj",
+              "RelativeDocumentMoniker": "Presentation\\Presentation.csproj",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Presentation\\Presentation.csproj",
+              "RelativeToolTip": "Presentation\\Presentation.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-12-15T02:10:22.91Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Application",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Application\\Application.csproj",
+              "RelativeDocumentMoniker": "Application\\Application.csproj",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Application\\Application.csproj",
+              "RelativeToolTip": "Application\\Application.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-12-15T02:10:16.13Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PostreSqlDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Infrastructure\\Postresql\\Data\\PostreSqlDbContext.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Postresql\\Data\\PostreSqlDbContext.cs",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Infrastructure\\Postresql\\Data\\PostreSqlDbContext.cs",
+              "RelativeToolTip": "Infrastructure\\Postresql\\Data\\PostreSqlDbContext.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAQwG0AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-15T02:00:46.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BookCatalogue.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Domain\\Entities\\BookCatalogue.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\BookCatalogue.cs",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Domain\\Entities\\BookCatalogue.cs",
+              "RelativeToolTip": "Domain\\Entities\\BookCatalogue.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-15T01:59:23.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Catalogue.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Domain\\Entities\\Catalogue.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Catalogue.cs",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Domain\\Entities\\Catalogue.cs",
+              "RelativeToolTip": "Domain\\Entities\\Catalogue.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-15T01:59:17.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Domain\\Entities\\Book.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Book.cs",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\AspDotNetLab\\Domain\\Entities\\Book.cs",
+              "RelativeToolTip": "Domain\\Entities\\Book.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAgwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-15T01:58:32.447Z",
+              "EditorCaption": ""
             }
           ]
         }

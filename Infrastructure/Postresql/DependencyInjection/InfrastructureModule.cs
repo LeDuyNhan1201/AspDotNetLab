@@ -33,9 +33,9 @@ public static class InfrastructureModule
     {
         services.AddScoped(typeof(ISqlRepository<,>), typeof(SqlRepository<,>));
         services.AddScoped<IUserRepository, UserRepository>();
-        //services.AddScoped<IPostPrivacyRepository, PostPrivacyRepository>();
-        //services.AddScoped<IPostPrivacyIncludeRepository, PostPrivacyIncludeRepository>();
-        //services.AddScoped<IPostPrivacyExcludeRepository, PostPrivacyExcludeRepository>();
+        services.AddScoped<ICartDetailRepository, CartDetailRepository>();
+        services.AddScoped<ICartRepository, CartRepository>();
+        services.AddScoped<IBookRepository, BookRepository>();
     }
 
 }

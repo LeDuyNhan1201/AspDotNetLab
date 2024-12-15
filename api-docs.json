@@ -1,0 +1,481 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Dot Net Lab REST APIs",
+      "description": "This is the APIs documentation for Dot Net Lab Web App.",
+      "termsOfService": "http://swagger.io/terms/",
+      "contact": {
+        "name": "Group ??",
+        "email": "benlun99999@gmail.com"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      },
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://localhost:41000/book-shop",
+        "description": "This is the APIs documentation for Dot Net Lab Web App."
+      }
+    ],
+    "paths": {
+      "/books": {
+        "get": {
+          "tags": [
+            "Books APIs"
+          ],
+          "description": "Get all books",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/BookResponse"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/BookResponse"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/BookResponse"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/carts/{userId}": {
+        "get": {
+          "tags": [
+            "Carts APIs"
+          ],
+          "description": "Get user's carts",
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CartResponse"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CartResponse"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CartResponse"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/carts": {
+        "post": {
+          "tags": [
+            "Carts APIs"
+          ],
+          "description": "Create cart",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateCartRequest"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateCartRequest"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateCartRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CartResponse"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CartResponse"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CartResponse"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/carts/{cartId}": {
+        "post": {
+          "tags": [
+            "Carts APIs"
+          ],
+          "description": "Add cart item",
+          "parameters": [
+            {
+              "name": "cartId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartItemRequest"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartItemRequest"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartItemRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CartItemResponse"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CartItemResponse"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CartItemResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/carts/{cartId}/items/{bookId}": {
+        "delete": {
+          "tags": [
+            "Carts APIs"
+          ],
+          "description": "Remove cart item",
+          "parameters": [
+            {
+              "name": "cartId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "bookId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CartItemResponse"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CartItemResponse"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CartItemResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/users": {
+        "get": {
+          "tags": [
+            "Users APIs"
+          ],
+          "description": "Get all users",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/UserResponse"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/UserResponse"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/UserResponse"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "BookResponse": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "title": {
+              "type": "string",
+              "nullable": true
+            },
+            "author": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": {
+              "type": "string",
+              "nullable": true
+            },
+            "price": {
+              "type": "number",
+              "format": "double"
+            },
+            "discountPrice": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "publishDate": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "catalogues": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CartItemRequest": {
+          "required": [
+            "bookId"
+          ],
+          "type": "object",
+          "properties": {
+            "bookId": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "quantity": {
+              "maximum": 10,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "additionalProperties": false
+        },
+        "CartItemResponse": {
+          "type": "object",
+          "properties": {
+            "book": {
+              "$ref": "#/components/schemas/PreviewBookResponse"
+            },
+            "quantity": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "price": {
+              "type": "number",
+              "format": "double"
+            },
+            "totalPrice": {
+              "type": "number",
+              "format": "double",
+              "readOnly": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CartResponse": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "user": {
+              "type": "string",
+              "nullable": true
+            },
+            "cartDetails": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CartItemResponse"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CreateCartRequest": {
+          "required": [
+            "items",
+            "userId"
+          ],
+          "type": "object",
+          "properties": {
+            "userId": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CartItemRequest"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "PreviewBookResponse": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "title": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "UserResponse": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "userName": {
+              "type": "string",
+              "nullable": true
+            },
+            "email": {
+              "type": "string",
+              "nullable": true
+            },
+            "address": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  }

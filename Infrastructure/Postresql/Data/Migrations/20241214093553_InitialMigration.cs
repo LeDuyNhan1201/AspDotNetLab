@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Infrastructure.Data.Migrations
+namespace Infrastructure.Postresql.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration
@@ -16,7 +16,7 @@ namespace Infrastructure.Data.Migrations
                 name: "books",
                 columns: table => new
                 {
-                    book_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
                     title = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     description = table.Column<string>(type: "text", nullable: true),
                     price = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
@@ -26,19 +26,19 @@ namespace Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_books", x => x.book_id);
+                    table.PrimaryKey("PK_books", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "catalogues",
                 columns: table => new
                 {
-                    catalogue_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
                     name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_catalogues", x => x.catalogue_id);
+                    table.PrimaryKey("PK_catalogues", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -95,13 +95,13 @@ namespace Infrastructure.Data.Migrations
                         name: "FK_book_catalogues_books_book_id",
                         column: x => x.book_id,
                         principalTable: "books",
-                        principalColumn: "book_id",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_book_catalogues_catalogues_catalogue_id",
                         column: x => x.catalogue_id,
                         principalTable: "catalogues",
-                        principalColumn: "catalogue_id",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -130,13 +130,13 @@ namespace Infrastructure.Data.Migrations
                 name: "carts",
                 columns: table => new
                 {
-                    cart_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
                     user_id = table.Column<Guid>(type: "uuid", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_carts", x => x.cart_id);
+                    table.PrimaryKey("PK_carts", x => x.id);
                     table.ForeignKey(
                         name: "FK_carts_users_user_id",
                         column: x => x.user_id,
@@ -246,13 +246,13 @@ namespace Infrastructure.Data.Migrations
                         name: "FK_cart_details_books_book_id",
                         column: x => x.book_id,
                         principalTable: "books",
-                        principalColumn: "book_id",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_cart_details_carts_cart_id",
                         column: x => x.cart_id,
                         principalTable: "carts",
-                        principalColumn: "cart_id",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

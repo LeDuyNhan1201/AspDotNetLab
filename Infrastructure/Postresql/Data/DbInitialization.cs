@@ -1,6 +1,5 @@
 ﻿using Bogus;
 using Domain.Entities;
-using Domain.IRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -41,7 +40,7 @@ namespace Infrastructure.Postresql.Data
             using var serviceScope = serviceProvider.CreateScope();
             var dbContext = serviceScope.ServiceProvider.GetService<PostreSqlDbContext>();
 
-            // Kiểm tra nếu đã có dữ liệu, bỏ qua seed
+            //Kiểm tra nếu đã có dữ liệu, bỏ qua seed
             if (dbContext.Users.Any() || dbContext.Books.Any())
                 return;
 
@@ -59,7 +58,8 @@ namespace Infrastructure.Postresql.Data
             var password = configuration["AdminUser:Password"];
             var phone = configuration["AdminUser:Phone"];
             // Tạo tài khoản Admin
-            var adminUser = new User { 
+            var adminUser = new User
+            {
                 UserName = username,
                 Email = email,
                 PhoneNumber = phone
@@ -70,13 +70,31 @@ namespace Infrastructure.Postresql.Data
                 await userManager.AddToRoleAsync(adminUser, "Admin");
             }
 
+            //username = configuration["TestUser:Username"];
+            //email = configuration["TestUser:Email"];
+            //password = configuration["TestUser:Password"];
+            //phone = configuration["TestUser:Phone"];
+            //// Tạo tài khoản User
+            //var testUser = new User
+            //{
+            //    UserName = username,
+            //    Email = email,
+            //    PhoneNumber = phone,
+            //    SecurityStamp = Guid.NewGuid().ToString()
+            //};
+            //if (await userManager.FindByEmailAsync(testUser.Email) == null)
+            //{
+            //    await userManager.CreateAsync(testUser, password);
+            //    await userManager.AddToRoleAsync(testUser, "User");
+            //}
+
             var users = GenerateUsers(30);
             await dbContext.Users.AddRangeAsync(users);
             await dbContext.SaveChangesAsync();
             foreach (var user in users)
             {
-                Faker faker = new ();
-                var role = faker.Random.Bool() ? "Admin" : "User";
+                Faker faker = new();
+                var role = "User";
                 await userManager.AddToRoleAsync(user, role);
             }
 
@@ -108,7 +126,6 @@ namespace Infrastructure.Postresql.Data
             var passwordHasher = new PasswordHasher<User>();
 
             var users = new Faker<User>()
-                .RuleFor(u => u.Id, _ => Guid.NewGuid())
                 .RuleFor(u => u.UserName, f => f.Person.UserName)
                 .RuleFor(u => u.Email, f => f.Person.Email)
                 .RuleFor(u => u.PhoneNumber, f => f.Person.Phone)
@@ -126,7 +143,6 @@ namespace Infrastructure.Postresql.Data
         private static List<Catalogue> GenerateCatalogues(int count)
         {
             return new Faker<Catalogue>()
-                .RuleFor(c => c.CatalogueId, _ => Guid.NewGuid())
                 .RuleFor(c => c.Name, f => f.Commerce.Categories(1)[0])
                 .Generate(count);
         }
@@ -134,11 +150,10 @@ namespace Infrastructure.Postresql.Data
         private static List<Book> GenerateBooks(int count)
         {
             return new Faker<Book>()
-                .RuleFor(b => b.BookId, _ => Guid.NewGuid())
                 .RuleFor(b => b.Title, f => f.Commerce.ProductName())
                 .RuleFor(b => b.Description, f => f.Lorem.Paragraph())
                 .RuleFor(b => b.Price, f => f.Random.Decimal(10, 100))
-                .RuleFor(b => b.DiscountPrice, (f, b) => f.Random.Bool() ? b.Price * 0.9m : (decimal?)null)
+                .RuleFor(b => b.DiscountPrice, (f, b) => f.Random.Bool() ? b.Price * 0.9m : null)
                 .RuleFor(b => b.Author, f => f.Person.FullName)
                 .RuleFor(b => b.PublishDate, f => f.Date.Past(5))
                 .Generate(count);
@@ -151,8 +166,8 @@ namespace Infrastructure.Postresql.Data
             return books.SelectMany(book => faker.PickRandom(catalogues, faker.Random.Int(1, 3))
                 .Select(catalogue => new BookCatalogue
                 {
-                    BookId = book.BookId,
-                    CatalogueId = catalogue.CatalogueId
+                    BookId = book.Id,
+                    CatalogueId = catalogue.Id
                 }))
                 .ToList();
         }
@@ -161,7 +176,6 @@ namespace Infrastructure.Postresql.Data
         {
             return users.Select(user => new Cart
             {
-                CartId = Guid.NewGuid(),
                 UserId = user.Id,
                 CreatedAt = DateTime.Now
             }).ToList();
@@ -177,8 +191,8 @@ namespace Infrastructure.Postresql.Data
                 var selectedBooks = faker.PickRandom(books, faker.Random.Int(1, 5)).ToList();
                 cartDetails.AddRange(selectedBooks.Select(book => new CartDetail
                 {
-                    CartId = cart.CartId,
-                    BookId = book.BookId,
+                    CartId = cart.Id,
+                    BookId = book.Id,
                     Quantity = faker.Random.Int(1, 3),
                     Price = book.Price
                 }));

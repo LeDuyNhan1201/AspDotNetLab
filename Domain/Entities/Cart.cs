@@ -6,10 +6,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Domain.Entities
 {
     [Table("carts")]
-    public class Cart
+    public class Cart : AbstractEntity<Guid>
     {
-        [Column("cart_id")]
-        public Guid CartId { get; set; } = Guid.NewGuid();
+
+        public Cart() => Id = Guid.NewGuid();
 
         [Column("user_id")]
         [Required]

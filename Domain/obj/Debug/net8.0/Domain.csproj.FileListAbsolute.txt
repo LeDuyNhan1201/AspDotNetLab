@@ -12,3 +12,4 @@ C:\Users\ASUS\source\repos\AspDotNetLab\Domain\obj\Debug\net8.0\refint\Domain.dl
 C:\Users\ASUS\source\repos\AspDotNetLab\Domain\obj\Debug\net8.0\Domain.pdb
 C:\Users\ASUS\source\repos\AspDotNetLab\Domain\obj\Debug\net8.0\Domain.genruntimeconfig.cache
 C:\Users\ASUS\source\repos\AspDotNetLab\Domain\obj\Debug\net8.0\ref\Domain.dll
+C:\Users\ASUS\source\repos\AspDotNetLab\Domain\obj\Debug\net8.0\Domain.sourcelink.json
