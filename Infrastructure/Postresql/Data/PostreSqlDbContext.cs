@@ -1,22 +1,25 @@
-﻿using Domain.Entities;
+﻿using System;
+using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
 
 namespace Infrastructure.Postresql.Data
 {
-    public class PostreSqlDbContext : 
-        IdentityDbContext<User, IdentityRole<Guid>, Guid, 
-            IdentityUserClaim<Guid>, 
-            IdentityUserRole<Guid>, 
-            IdentityUserLogin<Guid>, 
-            IdentityRoleClaim<Guid>, 
-            IdentityUserToken<Guid>>
+    public class PostreSqlDbContext
+        : IdentityDbContext<
+            User,
+            IdentityRole<Guid>,
+            Guid,
+            IdentityUserClaim<Guid>,
+            IdentityUserRole<Guid>,
+            IdentityUserLogin<Guid>,
+            IdentityRoleClaim<Guid>,
+            IdentityUserToken<Guid>
+        >
     {
-
         private readonly IConfiguration _configuration;
 
         public DbSet<Cart> Carts { get; set; }
@@ -31,7 +34,9 @@ namespace Infrastructure.Postresql.Data
 
         public PostreSqlDbContext(
             DbContextOptions<PostreSqlDbContext> options,
-            IConfiguration configuration) : base(options)
+            IConfiguration configuration
+        )
+            : base(options)
         {
             _configuration = configuration;
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
@@ -40,7 +45,8 @@ namespace Infrastructure.Postresql.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseNpgsql(_configuration.GetConnectionString("DefaultConnection"))
+                optionsBuilder
+                    .UseNpgsql(_configuration.GetConnectionString("DefaultConnection"))
                     .UseLazyLoadingProxies()
                     .EnableSensitiveDataLogging()
                     .LogTo(Console.WriteLine, LogLevel.Information);
@@ -87,8 +93,12 @@ namespace Infrastructure.Postresql.Data
             roleClaim.HasKey(rc => rc.Id);
 
             userToken.ToTable("user_tokens");
-            userToken.HasKey(ut => new { ut.UserId, ut.LoginProvider, ut.Name });
-
+            userToken.HasKey(ut => new
+            {
+                ut.UserId,
+                ut.LoginProvider,
+                ut.Name,
+            });
         }
 
         private static void ConfigureCartEntities(ModelBuilder modelBuilder)
@@ -97,21 +107,8 @@ namespace Infrastructure.Postresql.Data
             var cartDetail = modelBuilder.Entity<CartDetail>();
 
             cart.ToTable("carts");
-            cart.HasOne(c => c.User)
-                .WithMany(u => u.Carts)
-                .HasForeignKey(c => c.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
-
             cartDetail.ToTable("cart_details");
             cartDetail.HasKey(cd => new { cd.CartId, cd.BookId });
-            cartDetail.HasOne(cd => cd.Cart)
-                .WithMany(c => c.CartDetails)
-                .HasForeignKey(cd => cd.CartId)
-                .OnDelete(DeleteBehavior.Cascade);
-            cartDetail.HasOne(cd => cd.Book)
-                .WithMany(b => b.CartDetails)
-                .HasForeignKey(cd => cd.BookId)
-                .OnDelete(DeleteBehavior.Cascade);
         }
 
         private static void ConfigureBookEntities(ModelBuilder modelBuilder)
@@ -135,16 +132,6 @@ namespace Infrastructure.Postresql.Data
 
             bookCatalogue.ToTable("book_catalogues");
             bookCatalogue.HasKey(bc => new { bc.BookId, bc.CatalogueId });
-            bookCatalogue.HasOne(bc => bc.Book)
-                .WithMany(b => b.BookCatalogues)
-                .HasForeignKey(bc => bc.BookId)
-                .OnDelete(DeleteBehavior.Cascade);
-            bookCatalogue.HasOne(bc => bc.Catalogue)
-                .WithMany(c => c.BookCatalogues)
-                .HasForeignKey(bc => bc.CatalogueId)
-                .OnDelete(DeleteBehavior.Cascade);
         }
-
     }
-
 }

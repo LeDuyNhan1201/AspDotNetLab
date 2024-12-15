@@ -8,7 +8,6 @@ namespace Domain.Entities
     [Table("carts")]
     public class Cart : AbstractEntity<Guid>
     {
-
         public Cart() => Id = Guid.NewGuid();
 
         [Column("user_id")]
@@ -21,7 +20,5 @@ namespace Domain.Entities
 
         [ForeignKey(nameof(UserId))]
         public virtual User User { get; set; }
-
-        public virtual ICollection<CartDetail> CartDetails { get; set; } = [];
     }
 }

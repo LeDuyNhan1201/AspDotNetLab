@@ -8,7 +8,6 @@ namespace Domain.Entities
     [Table("books")]
     public class Book : AbstractEntity<Guid>
     {
-
         public Book() => Id = Guid.NewGuid();
 
         [Column("title")]
@@ -34,11 +33,5 @@ namespace Domain.Entities
         [Column("publish_date")]
         [Required]
         public DateTime PublishDate { get; set; }
-
-        public virtual ICollection<CartDetail> CartDetails { get; set; } = [];
-
-        public virtual ICollection<BookCatalogue> BookCatalogues { get; set; } = [];
-
     }
-
 }

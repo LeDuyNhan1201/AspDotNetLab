@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Infrastructure.Postresql.Data.Migrations
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(PostreSqlDbContext))]
     partial class PostreSqlDbContextModelSnapshot : ModelSnapshot
@@ -373,13 +373,13 @@ namespace Infrastructure.Postresql.Data.Migrations
             modelBuilder.Entity("Domain.Entities.BookCatalogue", b =>
                 {
                     b.HasOne("Domain.Entities.Book", "Book")
-                        .WithMany("BookCatalogues")
+                        .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Catalogue", "Catalogue")
-                        .WithMany("BookCatalogues")
+                        .WithMany()
                         .HasForeignKey("CatalogueId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -392,7 +392,7 @@ namespace Infrastructure.Postresql.Data.Migrations
             modelBuilder.Entity("Domain.Entities.Cart", b =>
                 {
                     b.HasOne("Domain.Entities.User", "User")
-                        .WithMany("Carts")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -403,13 +403,13 @@ namespace Infrastructure.Postresql.Data.Migrations
             modelBuilder.Entity("Domain.Entities.CartDetail", b =>
                 {
                     b.HasOne("Domain.Entities.Book", "Book")
-                        .WithMany("CartDetails")
+                        .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Cart", "Cart")
-                        .WithMany("CartDetails")
+                        .WithMany()
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -468,28 +468,6 @@ namespace Infrastructure.Postresql.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entities.Book", b =>
-                {
-                    b.Navigation("BookCatalogues");
-
-                    b.Navigation("CartDetails");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Cart", b =>
-                {
-                    b.Navigation("CartDetails");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Catalogue", b =>
-                {
-                    b.Navigation("BookCatalogues");
-                });
-
-            modelBuilder.Entity("Domain.Entities.User", b =>
-                {
-                    b.Navigation("Carts");
                 });
 #pragma warning restore 612, 618
         }

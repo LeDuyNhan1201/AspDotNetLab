@@ -8,16 +8,11 @@ namespace Domain.Entities
     [Table("catalogues")]
     public class Catalogue : AbstractEntity<Guid>
     {
-
         public Catalogue() => Id = Guid.NewGuid();
 
         [Column("name")]
         [MaxLength(100)]
         [Required]
         public string Name { get; set; }
-
-        public virtual ICollection<BookCatalogue> BookCatalogues { get; set; } = [];
-
     }
-
 }
